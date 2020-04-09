@@ -1,0 +1,8 @@
+spring:
+  data:
+    arangodb:
+      database: peopleDB
+      user: root
+      password: some_password
+      hosts:
+        - localhost:8528

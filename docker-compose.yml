@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  arangodb_db:
+    image: arangodb:latest
+    environment:
+      ARANGO_ROOT_PASSWORD: some_password
+    ports:
+      - 8529:8529
+    volumes:
+      - arangodb_data:/var/lib/arangodb3
+      - arangodb_apps_data:/var/lib/arangodb3-apps
+    networks:
+      - local
+  graph:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - arangodb_db
+    expose:
+      - "8080"
+    networks:
+      - local
+
+volumes:
+  arangodb_data:
+  arangodb_apps_data:
+
+networks:
+  local:
+    driver: bridge
