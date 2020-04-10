@@ -5,4 +5,4 @@ spring:
       user: root
       password: some_password
       hosts:
-        - localhost:8528
+        - arangodb_db:8529
